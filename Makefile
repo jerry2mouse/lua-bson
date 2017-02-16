@@ -1,4 +1,4 @@
-LUALIB=-I/usr/local/include -L/usr/local/bin -llua52
+LUALIB=-I/usr/local/include -L/usr/local/bin -llua53
 SOCKETLIB=-lws2_32
 
 .PHONY: all win linux
@@ -15,7 +15,7 @@ bson.dll : bson.c
 	gcc --shared -Wall -O2 $^ -o$@ $(LUALIB) $(SOCKETLIB)
 
 bson.so : bson.c
-	gcc --shared -Wall -fPIC -O2 $^ -o$@ 
+	gcc --shared -Wall -fPIC -O2 $^ -o$@ $(LUALIB) -lm
 
 clean:
 	rm -f bson.dll bson.so
